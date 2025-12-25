@@ -1,11 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Header from '@/components/layout/Header';
 import { Book, MessageCircle, Terminal, Search, ExternalLink, FileText, Globe2 } from 'lucide-react';
 
-export default function HelpPage() {
+function HelpContent() {
     const searchParams = useSearchParams();
     const resources = [
         {
@@ -314,5 +314,13 @@ export default function HelpPage() {
                 </div>
             </div>
         </div>
+    );
+}
+
+export default function HelpPage() {
+    return (
+        <Suspense fallback={<div className="min-h-screen bg-dark-950 flex items-center justify-center text-dark-400">Loading help center...</div>}>
+            <HelpContent />
+        </Suspense>
     );
 }
