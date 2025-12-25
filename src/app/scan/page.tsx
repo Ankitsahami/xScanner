@@ -58,17 +58,7 @@ export default function ScanPage() {
             .catch(err => console.error('Failed to fetch nodes:', err));
     }, []);
 
-    const handleNodeClick = (node: EnrichedPNode) => {
-        // Find if this node is in our search results
-        // This part of the code snippet was not present in the original document,
-        // so it's commented out to maintain syntactical correctness with the provided context.
-        // const isSearchResult = searchResults.some(n => n.public_key === node.public_key);
 
-        // setSelectedNode(node); // Also not present in original context
-        // Only open sidebar if it's not a verified node check (which interacts differently)
-        // or if explicitly clicked
-        setIsSidebarOpen(true);
-    };
 
     const handleScan = async () => {
         if (!searchQuery.trim()) return;
