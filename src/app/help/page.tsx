@@ -168,7 +168,7 @@ function HelpContent() {
                         <div className="bg-dark-950 p-4 rounded-lg font-mono text-sm text-dark-300 space-y-2 border border-dark-800 overflow-x-auto">
                             <div className="flex gap-3">
                                 <span className="text-purple-400 select-none">$</span>
-                                <span>git clone https://github.com/project-lab/xandeum-dashboard.git</span>
+                                <span>git clone https://github.com/Ankitsahami/xScanner </span>
                             </div>
                             <div className="flex gap-3">
                                 <span className="text-purple-400 select-none">$</span>
