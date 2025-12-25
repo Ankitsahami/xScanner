@@ -71,6 +71,7 @@ export default function DataTable<T extends object>({
         }
 
         return filtered;
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [data, searchQuery, sortConfig]);
 
     // Pagination
