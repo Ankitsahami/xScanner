@@ -159,7 +159,7 @@ export async function enrichPNodes(nodes: PNode[]): Promise<EnrichedPNode[]> {
         try {
             const loc = await getGeoLocation(ip);
             if (loc) location = loc;
-        } catch (_) {
+        } catch {
             console.warn(`Geo fetch failed for ${ip}`);
         }
 
