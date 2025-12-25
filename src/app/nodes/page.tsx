@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Header from '@/components/layout/Header';
 import DataTable from '@/components/ui/DataTable';
@@ -17,7 +17,7 @@ function truncatePubkey(pubkey: string, chars = 8): string {
     return `${pubkey.slice(0, chars)}...${pubkey.slice(-chars)}`;
 }
 
-export default function NodesPage() {
+function NodesContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const initialSearch = searchParams.get('search') || '';
@@ -224,5 +224,13 @@ export default function NodesPage() {
                 />
             </div>
         </div>
+    );
+}
+
+export default function NodesPage() {
+    return (
+        <Suspense fallback={<div className="min-h-screen bg-dark-950 flex items-center justify-center text-dark-400">Loading nodes...</div>}>
+            <NodesContent />
+        </Suspense>
     );
 }
