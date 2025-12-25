@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import Header from '@/components/layout/Header';
 import { Search, MapPin, Loader2, Navigation, ChevronRight, ChevronLeft } from 'lucide-react';
-import { EnrichedPNode, PNodesResponse, GeoLocation } from '@/lib/types';
+import { EnrichedPNode, PNodesResponse, GeoLocation, PNode } from '@/lib/types';
 import { getIpLocation } from '@/app/actions/scan';
 
 // Dynamically import Globe3D
@@ -57,6 +57,18 @@ export default function ScanPage() {
             })
             .catch(err => console.error('Failed to fetch nodes:', err));
     }, []);
+
+    const handleNodeClick = (node: EnrichedPNode) => {
+        // Find if this node is in our search results
+        // This part of the code snippet was not present in the original document,
+        // so it's commented out to maintain syntactical correctness with the provided context.
+        // const isSearchResult = searchResults.some(n => n.public_key === node.public_key);
+
+        // setSelectedNode(node); // Also not present in original context
+        // Only open sidebar if it's not a verified node check (which interacts differently)
+        // or if explicitly clicked
+        setIsSidebarOpen(true);
+    };
 
     const handleScan = async () => {
         if (!searchQuery.trim()) return;
@@ -237,7 +249,7 @@ export default function ScanPage() {
                                                     {node.pubkey}
                                                 </span>
                                                 <span className="text-xs font-medium text-brand-400">
-                                                    {(node as any).distance.toFixed(1)}km
+                                                    {(node as unknown as { distance: number }).distance?.toFixed(1) || '0.0'}km
                                                 </span>
                                             </div>
                                             <div className="flex items-center justify-between">

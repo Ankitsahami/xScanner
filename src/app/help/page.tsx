@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Header from '@/components/layout/Header';
-import { HelpCircle, Book, MessageCircle, Terminal, Search, ExternalLink, FileText, Globe2 } from 'lucide-react';
+import { Book, MessageCircle, Terminal, Search, ExternalLink, FileText, Globe2 } from 'lucide-react';
 
 export default function HelpPage() {
     const searchParams = useSearchParams();
@@ -30,14 +30,6 @@ export default function HelpPage() {
 
     const [activeDoc, setActiveDoc] = useState('quick-start');
 
-    // Update active doc from URL parameter
-    useEffect(() => {
-        const docParam = searchParams.get('doc');
-        if (docParam && docs[docParam as keyof typeof docs]) {
-            setActiveDoc(docParam);
-        }
-    }, [searchParams]);
-
     const docs = {
         'quick-start': {
             name: 'QUICK_START.md',
@@ -61,7 +53,7 @@ export default function HelpPage() {
                         <h2 className="text-2xl font-bold mb-4 text-foreground">Quick Start Guide</h2>
                         <p className="text-dark-200 leading-relaxed">
                             Welcome to <strong>xScaner</strong>, the premier real-time analytics dashboard designed specifically for the Xandeum network.
-                            This platform provides a comprehensive window into the decentralized storage network's health and distribution.
+                            This platform provides a comprehensive window into the decentralized storage network&apos;s health and distribution.
                         </p>
                     </div>
 
@@ -137,7 +129,7 @@ export default function HelpPage() {
                 <div className="space-y-6 animate-fade-in">
                     <h2 className="text-2xl font-bold mb-4 text-foreground">Scan & Verification</h2>
                     <p className="text-dark-200 leading-relaxed">
-                        The Scan page allows node operators to verify their node's visibility to the rest of the network.
+                        The Scan page allows node operators to verify their node&apos;s visibility to the rest of the network.
                         Simply enter your IP address to see how the network sees you.
                     </p>
 
@@ -148,7 +140,7 @@ export default function HelpPage() {
                             </h4>
                             <ul className="text-sm space-y-2 list-disc list-inside text-dark-300">
                                 <li>Instant verification of public visibility.</li>
-                                <li>Visual confirmation of your node's connection to neighbors.</li>
+                                <li>Visual confirmation of your node&apos;s connection to neighbors.</li>
                                 <li>Validates your geo-location data.</li>
                             </ul>
                         </div>
@@ -190,7 +182,7 @@ export default function HelpPage() {
                                 <span className="text-purple-400 select-none">$</span>
                                 <span>npm run dev</span>
                             </div>
-                            <div className="text-dark-500 italic pt-2">// Open http://localhost:3000 in your browser</div>
+                            <div className="text-dark-500 italic pt-2">{`// Open http://localhost:3000 in your browser`}</div>
                         </div>
                     </div>
 
@@ -274,6 +266,14 @@ export default function HelpPage() {
             )
         }
     };
+
+    // Update active doc from URL parameter
+    useEffect(() => {
+        const docParam = searchParams.get('doc');
+        if (docParam && docs[docParam as keyof typeof docs]) {
+            setActiveDoc(docParam);
+        }
+    }, [searchParams]);
 
     return (
         <div className="min-h-screen flex flex-col">

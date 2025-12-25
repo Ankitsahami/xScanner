@@ -8,17 +8,6 @@ import { StatusDot } from '@/components/ui/Badge';
 import { EnrichedPNode, NetworkStats, PNodesResponse } from '@/lib/types';
 import {
   Server,
-  Clock,
-  Cpu,
-  MemoryStick,
-  Timer,
-  HardDrive,
-  Database,
-  Activity,
-  Zap,
-  TrendingUp,
-  Coins,
-  Radio,
   MapPin
 } from 'lucide-react';
 
@@ -34,21 +23,6 @@ const Globe3D = dynamic(() => import('@/components/Globe3D'), {
     </div>
   ),
 });
-
-// Format uptime from seconds to human readable
-function formatUptime(seconds: number): string {
-  const days = Math.floor(seconds / 86400);
-  const hours = Math.floor((seconds % 86400) / 3600);
-  return `${days}d ${hours}h`;
-}
-
-// Format large numbers
-function formatNumber(num: number): string {
-  if (num >= 1e9) return `${(num / 1e9).toFixed(2)}B`;
-  if (num >= 1e6) return `${(num / 1e6).toFixed(2)}M`;
-  if (num >= 1e3) return `${(num / 1e3).toFixed(2)}K`;
-  return num.toLocaleString();
-}
 
 export default function OverviewPage() {
   const [nodes, setNodes] = useState<EnrichedPNode[]>([]);

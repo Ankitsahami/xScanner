@@ -140,15 +140,14 @@ export default function Sidebar() {
                                         // For highlighting, we might need a more robust check in a real app,
                                         // but checking if pathname matches child.href base is tricky with query params.
                                         // Let's just render as normal links.
-                                        const isChildActive = typeof window !== 'undefined' && window.location.search === child.href.split('?')[1]?.replace('?', '?');
 
                                         return (
                                             <Link
                                                 key={child.name}
                                                 href={child.href}
                                                 className={`block px-3 py-2 text-sm rounded-lg transition-colors ${pathname === '/help' && child.href.includes(typeof window !== 'undefined' ? window.location.search : '')
-                                                        ? 'text-brand-400 bg-brand-500/5'
-                                                        : 'text-dark-300 hover:text-foreground hover:bg-dark-800'
+                                                    ? 'text-brand-400 bg-brand-500/5'
+                                                    : 'text-dark-300 hover:text-foreground hover:bg-dark-800'
                                                     }`}
                                             >
                                                 {child.name}

@@ -15,9 +15,7 @@ import {
     Tooltip,
     ResponsiveContainer,
     Cell,
-    Legend,
-    PieChart,
-    Pie
+    Legend
 } from 'recharts';
 import {
     Server,

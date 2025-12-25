@@ -70,6 +70,12 @@ export interface HistoricalDataPoint {
     onlineNodes: number;
 }
 
+export interface NodeHistoryPoint {
+    timestamp: string;
+    latency: number;
+    uptime: number;
+}
+
 export interface TimeRange {
     label: string;
     value: '1h' | '6h' | '24h' | '7d' | '30d';

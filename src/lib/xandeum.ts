@@ -103,34 +103,6 @@ export async function getGeoLocation(ip: string): Promise<GeoLocation | null> {
     }
 }
 
-
-// Limit concurrency for async operations
-async function pLimit<T>(
-    tasks: (() => Promise<T>)[],
-    concurrency: number
-): Promise<T[]> {
-    const results: T[] = [];
-    const executing: Promise<void>[] = [];
-
-    for (const task of tasks) {
-        const p = task().then(result => {
-            results.push(result);
-        });
-
-        executing.push(p);
-
-        if (executing.length >= concurrency) {
-            await Promise.race(executing);
-            // Remove completed promise
-            const index = executing.findIndex(e => e === p); // Note: this is simplified, actual race outcome tracking is more complex usually but simplified here for linear processing
-        }
-    }
-    // Note: The above loop logic is slightly flawed for true "pool" behavior. 
-    // Let's implement a simpler "chunking" or a proper queue.
-    // Actually, let's use a simple queue system.
-    return Promise.all(tasks.map(t => t()));
-}
-
 // Simple concurrency runner
 async function runConcurrent<T>(
     items: T[],
@@ -148,8 +120,8 @@ async function runConcurrent<T>(
                 try {
                     const res = await fn(item);
                     results.push(res);
-                } catch (e) {
-                    console.error('Error in concurrent worker:', e);
+                } catch (_) { // eslint-disable-line @typescript-eslint/no-unused-vars
+                    console.error('Error in concurrent worker:', _);
                 }
             }
         }
