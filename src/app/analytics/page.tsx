@@ -274,7 +274,7 @@ export default function AnalyticsPage() {
                                         cursor={{ fill: '#2a2d35', opacity: 0.4 }}
                                         contentStyle={{ backgroundColor: '#1f2229', borderColor: '#374151', color: '#fff' }}
                                         itemStyle={{ color: '#fbbf24' }}
-                                        formatter={(value: any) => [`${value} Nodes`, 'Count']}
+                                        formatter={(value: number | undefined) => [`${value} Nodes`, 'Count']}
                                     />
                                     <Bar
                                         dataKey="value"
@@ -327,7 +327,7 @@ export default function AnalyticsPage() {
                                         <span className="px-2 py-1 rounded text-[10px] bg-green-500/10 text-green-400 border border-green-500/20">
                                             {node.version || 'v0.0.0'}
                                         </span>
-                                        <StatusDot status={node.status as any} />
+                                        <StatusDot status={node.status as "online" | "offline"} />
                                     </div>
                                 </div>
                             ))}

@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import Header from '@/components/layout/Header';
 import { Search, MapPin, Loader2, Navigation, ChevronRight, ChevronLeft } from 'lucide-react';
-import { EnrichedPNode, PNodesResponse, GeoLocation, PNode } from '@/lib/types';
+import { EnrichedPNode, PNodesResponse, GeoLocation } from '@/lib/types';
 import { getIpLocation } from '@/app/actions/scan';
 
 // Dynamically import Globe3D

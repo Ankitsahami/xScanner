@@ -4,14 +4,13 @@ import { useState, useEffect, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import Header from '@/components/layout/Header';
-import StatCard from '@/components/ui/StatCard';
-import Badge, { StatusDot } from '@/components/ui/Badge';
-import { RegionStats, EnrichedPNode, PNodesResponse } from '@/lib/types';
 import {
     ArrowLeft,
     Heart,
     MapPin
 } from 'lucide-react';
+import Badge, { StatusDot } from '@/components/ui/Badge';
+import { RegionStats, EnrichedPNode, PNodesResponse } from '@/lib/types';
 
 // Dynamic import for MiniMap (Leaflet requires window)
 const MiniMap = dynamic(() => import('@/components/MiniMap'), {
@@ -34,12 +33,6 @@ function getCountryFlag(countryCode: string): string {
     } catch {
         return '🌍';
     }
-}
-
-
-// Mock history removed - use real data or empty state
-function generateMockHistory() {
-    return [];
 }
 
 export default function RegionDetailPage() {

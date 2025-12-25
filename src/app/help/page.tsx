@@ -267,12 +267,12 @@ export default function HelpPage() {
         }
     };
 
-    // Update active doc from URL parameter
     useEffect(() => {
         const docParam = searchParams.get('doc');
         if (docParam && docs[docParam as keyof typeof docs]) {
             setActiveDoc(docParam);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [searchParams]);
 
     return (

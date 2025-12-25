@@ -1,4 +1,4 @@
-import { PNode, EnrichedPNode, NetworkStats, GeoLocation, NodeMetrics, XANDEUM_SEED_NODES } from './types';
+import { PNode, EnrichedPNode, NetworkStats, GeoLocation, XANDEUM_SEED_NODES } from './types';
 import { cache, CACHE_KEYS, CACHE_TTL } from './cache';
 
 // Xandeum RPC Client
@@ -104,12 +104,12 @@ export async function getGeoLocation(ip: string): Promise<GeoLocation | null> {
 }
 
 // Simple concurrency runner
-async function runConcurrent<T>(
+async function runConcurrent<T, R>(
     items: T[],
     concurrency: number,
-    fn: (item: T) => Promise<any>
-): Promise<any[]> {
-    const results: any[] = [];
+    fn: (item: T) => Promise<R>
+): Promise<R[]> {
+    const results: R[] = [];
     const queue = [...items];
 
     // Worker function
@@ -120,8 +120,8 @@ async function runConcurrent<T>(
                 try {
                     const res = await fn(item);
                     results.push(res);
-                } catch (_) { // eslint-disable-line @typescript-eslint/no-unused-vars
-                    console.error('Error in concurrent worker:', _);
+                } catch {
+                    // Ignore errors in worker
                 }
             }
         }
@@ -159,7 +159,7 @@ export async function enrichPNodes(nodes: PNode[]): Promise<EnrichedPNode[]> {
         try {
             const loc = await getGeoLocation(ip);
             if (loc) location = loc;
-        } catch (e) {
+        } catch (_) {
             console.warn(`Geo fetch failed for ${ip}`);
         }
 

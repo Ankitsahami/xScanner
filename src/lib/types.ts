@@ -41,10 +41,6 @@ export interface GeoLocation {
 
 
 
-export interface NodeMetrics {
-    // Empty or removed
-}
-
 export interface NetworkStats {
     totalNodes: number;
     onlineNodes: number;
