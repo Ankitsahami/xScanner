@@ -296,6 +296,7 @@ export default function Globe3D({ nodes, onNodeClick, onNodeHover, userLocation,
             map.remove();
             mapRef.current = null;
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []); // Empty dependencies = Run once!
 
     // Add node markers with popups (Standard Nodes)
